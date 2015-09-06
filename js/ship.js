@@ -6,6 +6,7 @@ function Ship(){
 			x: WIDTH/2,
 			y: HEIGHT/2
 		},
+		radius: 4,
 		image: IMG_SHIP
 	});
 	
@@ -38,4 +39,14 @@ Ship.prototype.update = function(){
 	}
 
 	Entity.prototype.update.call(this);
+
+	for(var i = 0; i < world.entities.length; i++){
+		var entity = world.entities[i];
+		if(entity instanceof Rock){
+			if(this.collides(entity)){
+				world.initalEntities.remove(world.currentShip);
+				world.rewind();
+			}
+		}
+	}
 }

@@ -4,7 +4,8 @@ function World(rocks){
 	this.entities = [];
 	this.frame = 0;
 
-	this.entities.push(new Ship());
+	this.currentShip = new Ship();
+	this.entities.push(this.currentShip);
 	for(var i = 0; i < rocks; i++){
 		this.entities.push(new Rock(ROCK_LARGE_RADIUS));
 	}
@@ -57,7 +58,8 @@ World.prototype.render = function(){
 }
 
 World.prototype.rewind = function(){
-	this.initalEntities.push(new Ship());
+	this.currentShip = new Ship();
+	this.initalEntities.push(this.currentShip);
 	this.entities = [];
 	for(var i = 0; i < this.initalEntities.length; i++){
 		this.entities.push(this.initalEntities[i]);
