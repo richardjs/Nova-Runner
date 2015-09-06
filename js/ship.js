@@ -18,6 +18,7 @@ Ship.prototype.update = function(){
 	var input;
 	if(this.inputs[world.frame]){
 		input = clone(this.inputs[world.frame]);
+		this.image = IMG_SHIP_PAST;
 	}else{
 		input = controller.buttons;
 		this.inputs[world.frame] = clone(controller.buttons);

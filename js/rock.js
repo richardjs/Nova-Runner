@@ -29,6 +29,7 @@ function Rock(radius){
 }
 
 Rock.prototype = Object.create(Entity.prototype);
+Rock.prototype.constructor = Rock;
 
 Rock.prototype.hit = function(){
 	world.entities.remove(this);
@@ -37,5 +38,16 @@ Rock.prototype.hit = function(){
 		debris.pos.x = this.pos.x;
 		debris.pos.y = this.pos.y;
 		world.entities.push(debris);
+	}
+
+	var over = true;
+	for(var i = 0; i < world.entities.length; i++){
+		if(world.entities[i] instanceof Rock){
+			over = false;
+			break;
+		}
+	}
+	if(over){
+		world.over();
 	}
 }

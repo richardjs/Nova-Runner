@@ -1,6 +1,8 @@
 'use strict';
 
 window.addEventListener('load', function(){
+	generateImages();
+
 	window.canvas = document.createElement('canvas');
 	document.body.appendChild(canvas);
 	canvas.width = WIDTH;

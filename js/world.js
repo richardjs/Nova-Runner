@@ -44,3 +44,6 @@ World.prototype.rewind = function(){
 
 	this.frame = 0;
 }
+
+World.prototype.over = function(){
+}
