@@ -16,7 +16,7 @@ Ship.prototype = Object.create(Entity.prototype);
 
 Ship.prototype.update = function(){
 	var input;
-	if(this.inputs[world.frame] !== undefined){
+	if(this.inputs[world.frame]){
 		input = clone(this.inputs[world.frame]);
 		this.image = IMG_SHIP_PAST;
 	}else{
