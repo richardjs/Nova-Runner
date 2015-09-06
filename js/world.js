@@ -13,11 +13,29 @@ function World(rocks){
 	for(var i = 0; i < this.entities.length; i++){
 		this.initalEntities.push(this.entities[i]);
 	}
+
+	this.video = [];
+	this.videoCurrentFrame;
 }
 
 World.prototype.update = function(){
+	if(this.rewinding){
+		if(this.video.length){
+			this.videoCurrentFrame = this.video.pop();
+		}else{
+			this.rewinding = false;
+		}
+		return;
+	}
+
 	this.entities.update();
 	this.frame++;
+
+	if(this.frame % 4 === 0){
+		var image = new Image();
+		image.src = canvas.toDataURL();
+		this.video.push(image);
+	}
 
 	if(this.frame === WORLD_FRAMES){
 		this.rewind();
@@ -25,6 +43,11 @@ World.prototype.update = function(){
 }
 
 World.prototype.render = function(){
+	if(this.rewinding){
+		ctx.drawImage(this.videoCurrentFrame, 0, 0);
+		return;
+	}
+
 	ctx.fillStyle = '#000';
 	ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	this.entities.render();
@@ -45,6 +68,9 @@ World.prototype.rewind = function(){
 	controller.buttons = {};
 
 	this.frame = 0;
+
+	this.rewinding = true;
+	this.videoCurrentFrame = this.video.pop();
 }
 
 World.prototype.over = function(){
