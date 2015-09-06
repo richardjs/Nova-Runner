@@ -1,11 +1,13 @@
 'use strict';
 
-function World(){
+function World(rocks){
 	this.entities = [];
 	this.frame = 0;
 
 	this.entities.push(new Ship());
-	this.entities.push(new Rock(ROCK_LARGE_RADIUS));
+	for(var i = 0; i < rocks; i++){
+		this.entities.push(new Rock(ROCK_LARGE_RADIUS));
+	}
 
 	this.initalEntities = [];
 	for(var i = 0; i < this.entities.length; i++){
@@ -46,4 +48,5 @@ World.prototype.rewind = function(){
 }
 
 World.prototype.over = function(){
+	this.isOver = true;
 }

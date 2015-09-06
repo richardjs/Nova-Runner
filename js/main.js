@@ -17,10 +17,14 @@ window.addEventListener('load', function(){
 
 	window.controller = new Controller();
 
-	window.world = new World();
+	var level = 1
+	window.world = new World(level++);
 
 	setTimer(function(){
 		world.update();
+		if(world.isOver){
+			window.world = new World(level++);
+		}
 	}, 1000/FPS);
 
 	function frame(time){
