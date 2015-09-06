@@ -22,6 +22,6 @@ var SHOT_COLOR = '#474';
 var ROCK_LARGE_RADIUS = 10;
 var ROCK_MEDIUM_RADIUS = 7;
 var ROCK_SMALL_RADIUS = 3;
-var ROCK_RADIUS_SPEED_SCALE = 2;
-var ROCK_MAX_SPEED = 15; // This will divided by the radius*ROCK_RADIUS_SPEED_SCALE
+var ROCK_RADIUS_SPEED_SCALE = 1.5;
+var ROCK_MAX_SPEED = 8; // This will divided by the radius*ROCK_RADIUS_SPEED_SCALE
 

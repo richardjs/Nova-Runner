@@ -12,4 +12,4 @@ cp img/*.png build/img
 
 zip -r build.zip build/
 
-du -h build.zip
+ls -lh build.zip
