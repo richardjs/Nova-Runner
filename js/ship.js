@@ -44,8 +44,8 @@ Ship.prototype.update = function(){
 		var entity = world.entities[i];
 		if(entity instanceof Rock){
 			if(this.collides(entity)){
-				world.initalEntities.remove(world.currentShip);
-				world.rewind();
+				world.shipHit = true;
+				break;
 			}
 		}
 	}

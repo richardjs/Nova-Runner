@@ -38,7 +38,10 @@ World.prototype.update = function(){
 		this.video.push(image);
 	}
 
-	if(this.frame === WORLD_FRAMES){
+	if(this.shipHit){
+		world.initalEntities.remove(world.currentShip);
+		world.rewind();
+	}else if(this.frame === WORLD_FRAMES){
 		this.rewind();
 	}
 }
@@ -60,6 +63,8 @@ World.prototype.render = function(){
 World.prototype.rewind = function(){
 	this.currentShip = new Ship();
 	this.initalEntities.push(this.currentShip);
+	this.shipHit = false;
+
 	this.entities = [];
 	for(var i = 0; i < this.initalEntities.length; i++){
 		this.entities.push(this.initalEntities[i]);
@@ -67,6 +72,7 @@ World.prototype.rewind = function(){
 	for(var i = 0; i < this.entities.length; i++){
 		this.entities[i].reset();
 	}
+
 	controller.buttons = {};
 
 	this.frame = 0;
