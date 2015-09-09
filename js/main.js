@@ -22,7 +22,7 @@ window.addEventListener('load', function(){
 
 	setTimer(function(){
 		world.update();
-		if(world.isOver){
+		if(world.isOver && !world.rewinding && !world.finalPlay){
 			window.world = new World(level++);
 		}
 	}, 1000/FPS);

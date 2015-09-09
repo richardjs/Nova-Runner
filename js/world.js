@@ -25,6 +25,9 @@ World.prototype.update = function(){
 			this.videoCurrentFrame = this.video.pop();
 		}else{
 			this.rewinding = false;
+			if(this.isOver){
+				this.finalPlay = true;
+			}
 		}
 		return;
 	}
@@ -43,7 +46,15 @@ World.prototype.update = function(){
 		this.lostLife = true;
 		this.rewind();
 	}else if(this.frame === WORLD_FRAMES){
-		this.rewind();
+		if(!this.finalPlay){
+			this.rewind();
+		}else{
+			this.finalPlay = false;
+		}
+	}else if(this.isOver){
+		if(!this.finalPlay){
+			world.rewind();
+		}
 	}
 }
 
@@ -55,20 +66,27 @@ World.prototype.render = function(){
 			ctx.font = '18pt courier';
 			ctx.textAlign = 'center';
 			ctx.fillText('Emergency system activated!', WIDTH/2, HEIGHT/2);
+		}else if(this.isOver){
+			ctx.fillStyle = '#3a3';
+			ctx.font = '18pt courier';
+			ctx.textAlign = 'center';
+			ctx.fillText('Sector mined successfully!', WIDTH/2, HEIGHT/2);
 		}
 		return;
 	}
 	this.lostLife = false;
 
-	var bgColorScale = Math.pow(this.frame, 15) / Math.pow(WORLD_FRAMES, 15);
-	ctx.fillStyle = 'rgb('+Math.floor(255*bgColorScale)+','+Math.floor(255*bgColorScale)+','+Math.floor(200*bgColorScale)+')';
+	var bgColorScale = Math.pow(this.frame, 5) / Math.pow(WORLD_FRAMES, 5);
+	ctx.fillStyle = 'rgb('+Math.floor(150*bgColorScale)+','+Math.floor(150*bgColorScale)+','+Math.floor(120*bgColorScale)+')';
 	ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	this.entities.render();
 }
 
 World.prototype.rewind = function(){
-	this.currentShip = new Ship();
-	this.initalEntities.push(this.currentShip);
+	if(!this.isOver){
+		this.currentShip = new Ship();
+		this.initalEntities.push(this.currentShip);
+	}
 	this.shipHit = false;
 
 	this.entities = [];
