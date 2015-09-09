@@ -39,8 +39,9 @@ World.prototype.update = function(){
 	}
 
 	if(this.shipHit){
-		world.initalEntities.remove(world.currentShip);
-		world.rewind();
+		this.initalEntities.remove(world.currentShip);
+		this.lostLife = true;
+		this.rewind();
 	}else if(this.frame === WORLD_FRAMES){
 		this.rewind();
 	}
@@ -49,15 +50,20 @@ World.prototype.update = function(){
 World.prototype.render = function(){
 	if(this.rewinding){
 		ctx.drawImage(this.videoCurrentFrame, 0, 0);
+		if(this.lostLife){
+			ctx.fillStyle = '#a33';
+			ctx.font = '18pt courier';
+			ctx.textAlign = 'center';
+			ctx.fillText('Emergency system activated!', WIDTH/2, HEIGHT/2);
+		}
 		return;
 	}
+	this.lostLife = false;
 
-	ctx.fillStyle = '#000';
+	var bgColorScale = Math.pow(this.frame, 15) / Math.pow(WORLD_FRAMES, 15);
+	ctx.fillStyle = 'rgb('+Math.floor(255*bgColorScale)+','+Math.floor(255*bgColorScale)+','+Math.floor(200*bgColorScale)+')';
 	ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	this.entities.render();
-
-	ctx.fillStyle = '#fff';
-	ctx.fillText(Math.floor((WORLD_FRAMES - this.frame) / 60) + 1, 5, 10);
 }
 
 World.prototype.rewind = function(){
