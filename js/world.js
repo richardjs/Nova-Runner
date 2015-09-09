@@ -35,7 +35,7 @@ World.prototype.update = function(){
 	this.entities.update();
 	this.frame++;
 
-	if(this.frame % 4 === 0){
+	if(this.frame % 4 === 0 && !this.finalPlay){
 		var image = new Image();
 		image.src = canvas.toDataURL();
 		this.video.push(image);
