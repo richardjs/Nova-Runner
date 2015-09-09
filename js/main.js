@@ -17,7 +17,7 @@ window.addEventListener('load', function(){
 
 	window.controller = new Controller();
 
-	var level = 1
+	var level = 1;
 	window.world = new World(level++);
 
 	setTimer(function(){

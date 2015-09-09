@@ -1,10 +1,16 @@
 'use strict';
 
 function Rock(radius){
+	var x;
+	var y;
+	do{
+		x = Math.floor(WIDTH * Math.random());
+		y = Math.floor(HEIGHT * Math.random());
+	}while(!(x < ROCK_SPAWN_MARGIN_X || x > WIDTH - ROCK_SPAWN_MARGIN_X || y < ROCK_SPAWN_MARGIN_Y || y > HEIGHT - ROCK_SPAWN_MARGIN_Y))
 	Entity.call(this, {
 		pos: {
-			x: Math.floor(Math.random() * WIDTH),
-			y: Math.floor(Math.random() * HEIGHT)
+			x: x,
+			y: y
 		},
 		velocity: {
 			x: Math.random() * ROCK_MAX_SPEED * randomSign() / (radius*2),
