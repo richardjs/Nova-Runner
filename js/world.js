@@ -17,6 +17,8 @@ function World(rocks){
 
 	this.video = [];
 	this.videoCurrentFrame;
+
+	this.score = 0;
 }
 
 World.prototype.update = function(){
@@ -80,6 +82,11 @@ World.prototype.render = function(){
 	ctx.fillStyle = 'rgb('+Math.floor(150*bgColorScale)+','+Math.floor(150*bgColorScale)+','+Math.floor(120*bgColorScale)+')';
 	ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	this.entities.render();
+
+	ctx.fillStyle = '#ccc';
+	ctx.font = '10px courier';
+	ctx.textAlign = 'right';
+	ctx.fillText('Score: ' + (score + world.score), WIDTH - 5, 10);
 }
 
 World.prototype.rewind = function(){
@@ -100,6 +107,8 @@ World.prototype.rewind = function(){
 	controller.buttons = {};
 
 	this.frame = 0;
+
+	this.score = 0;
 
 	this.rewinding = true;
 	this.videoCurrentFrame = this.video.pop();

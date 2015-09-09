@@ -46,6 +46,8 @@ Rock.prototype.hit = function(){
 		world.entities.push(debris);
 	}
 
+	world.score += ROCK_POINTS;
+
 	var over = true;
 	for(var i = 0; i < world.entities.length; i++){
 		if(world.entities[i] instanceof Rock){

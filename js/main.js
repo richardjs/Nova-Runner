@@ -18,11 +18,13 @@ window.addEventListener('load', function(){
 	window.controller = new Controller();
 
 	var level = 1;
+	window.score = 0;
 	window.world = new World(level++);
 
 	setTimer(function(){
 		world.update();
 		if(world.isOver && !world.rewinding && !world.finalPlay){
+			score += world.score;
 			window.world = new World(level++);
 		}
 	}, 1000/FPS);
