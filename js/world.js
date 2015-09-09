@@ -46,7 +46,13 @@ World.prototype.update = function(){
 	if(this.shipHit){
 		this.initalEntities.remove(world.currentShip);
 		this.lostLife = true;
-		this.rewind();
+		lives--;
+		if(lives >= 0){
+			this.rewind();
+		}else{
+			alert('Game over! Score: ' + score + world.score);
+			window.location.reload();
+		}
 	}else if(this.frame === WORLD_FRAMES){
 		if(!this.finalPlay){
 			this.rewind();
@@ -87,6 +93,7 @@ World.prototype.render = function(){
 	ctx.font = '10px courier';
 	ctx.textAlign = 'right';
 	ctx.fillText('Score: ' + (score + world.score), WIDTH - 5, 10);
+	ctx.fillText('Lives: ' + lives, WIDTH - 5, 20);
 }
 
 World.prototype.rewind = function(){

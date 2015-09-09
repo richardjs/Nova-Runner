@@ -8,6 +8,9 @@ var FPS = 60;
 
 var WORLD_FRAMES = 10 * FPS;
 
+var INITIAL_LIVES = 3;
+var NEW_LIFE_POINTS = 500;
+
 var SHIP_ROTATE_SPEED = Math.PI*2 / FPS;
 var SHIP_ACCELERATION = 3 / FPS;
 

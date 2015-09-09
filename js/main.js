@@ -17,13 +17,15 @@ window.addEventListener('load', function(){
 
 	window.controller = new Controller();
 
-	var level = 1;
+	window.level = 1;
 	window.score = 0;
+	window.lives = INITIAL_LIVES;
 	window.world = new World(level++);
 
 	setTimer(function(){
 		world.update();
 		if(world.isOver && !world.rewinding && !world.finalPlay){
+			lives += Math.floor((score + world.score) / NEW_LIFE_POINTS) - Math.floor(score / NEW_LIFE_POINTS);
 			score += world.score;
 			window.world = new World(level++);
 		}
