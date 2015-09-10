@@ -2,6 +2,7 @@
 
 function Controller(){
 	this.buttons = {};
+	this.shootingUp = true;
 
 	window.addEventListener('keydown', function(event){
 		switch(event.which){
@@ -21,7 +22,9 @@ function Controller(){
 				this.buttons.paused = !this.buttons.paused;
 				break;
 			case 32:
-				this.buttons.shooting = true;
+				this.buttons.shooting = (true && this.shootingUp);
+				this.shootingUp = false;
+				break;
 		}
 	}.bind(this));
 
@@ -41,6 +44,8 @@ function Controller(){
 				this.buttons.accelerate = false;
 			case 32:
 				this.buttons.shooting = false;
+				this.shootingUp = true;
+				break;
 		}
 	}.bind(this));
 }
