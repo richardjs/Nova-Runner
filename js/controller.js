@@ -18,8 +18,13 @@ function Controller(){
 			case 38:
 			case 87:
 				this.buttons.accelerate = true;
+				break;
 			case 80:
-				this.buttons.paused = !this.buttons.paused;
+				if(paused){
+					window.unpause();
+				}else{
+					window.pause();
+				}
 				break;
 			case 32:
 				this.buttons.shooting = (true && this.shootingUp);
@@ -42,6 +47,7 @@ function Controller(){
 			case 38:
 			case 87:
 				this.buttons.accelerate = false;
+				break;
 			case 32:
 				this.buttons.shooting = false;
 				this.shootingUp = true;
