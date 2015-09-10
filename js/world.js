@@ -50,7 +50,7 @@ World.prototype.update = function(){
 		if(lives >= 0){
 			this.rewind();
 		}else{
-			alert('Game over! Score: ' + score + world.score);
+			alert('Game over! Score: ' + (score + world.score));
 			window.location.reload();
 		}
 	}else if(this.frame === WORLD_FRAMES){
