@@ -19,6 +19,7 @@ function World(rocks){
 	this.videoCurrentFrame;
 
 	this.score = 0;
+	this.timelines = 1;
 }
 
 World.prototype.update = function(){
@@ -94,12 +95,18 @@ World.prototype.render = function(){
 	ctx.textAlign = 'right';
 	ctx.fillText('Score: ' + (score + world.score), WIDTH - 5, 10);
 	ctx.fillText('Lives: ' + lives, WIDTH - 5, 20);
+	ctx.textAlign = 'left';
+	ctx.fillText('Sector: ' + (level - 1), 5, 10);
+	ctx.fillText('Timelines: ' + this.timelines, 5, 20);
 }
 
 World.prototype.rewind = function(){
 	if(!this.isOver){
 		this.currentShip = new Ship();
 		this.initalEntities.push(this.currentShip);
+		if(!this.shipHit){
+			this.timelines++;
+		}
 	}
 	this.shipHit = false;
 
