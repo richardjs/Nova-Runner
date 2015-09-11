@@ -48,23 +48,63 @@ function mainMenu(){
 }
 
 function startGame(){
+	window.frozen = false;
+
 	window.level = 1;
 	window.score = 0;
 	window.lives = INITIAL_LIVES;
 	window.world = new World(level++);
 
-	window.timer = setTimer(function(){
-		world.update();
-		if(world.isOver && !world.rewinding && !world.finalPlay){
-			lives += Math.floor((score + world.score) / NEW_LIFE_POINTS) - Math.floor(score / NEW_LIFE_POINTS);
-			score += world.score;
-			window.world = new World(level++);
-		}
-	}, 1000/FPS);
+	if(typeof(world.timer) === 'undefined'){
+		window.timer = setTimer(function(){
+			world.update();
+			if(world.isOver && !world.rewinding && !world.finalPlay){
+				lives += Math.floor((score + world.score) / NEW_LIFE_POINTS) - Math.floor(score / NEW_LIFE_POINTS);
+				score += world.score;
+				window.world = new World(level++);
+			}
+		}, 1000/FPS);
+	}else{
+		unpause();
+	}
 
 	function frame(time){
-		world.render();
-		requestAnimationFrame(frame);
+		if(!window.frozen){
+			world.render();
+			requestAnimationFrame(frame);
+		}
 	}
 	requestAnimationFrame(frame);
 };
+
+function highScores(){
+	ctx.fillStyle = '#000';
+	ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+	ctx.fillStyle = '#a22';
+	ctx.font = '20px courier';
+	ctx.textAlign = 'center';
+	ctx.fillText('    h i g h   s c o r e s', WIDTH/2, 30);
+
+	ctx.fillStyle = '#aa4';
+	ctx.font = '15px courier';
+	for(var i = 0; i < 10; i++){
+		ctx.textAlign = 'right';
+		ctx.fillText('richard' + '  ', WIDTH/2, 60 + 20*i);
+		ctx.textAlign = 'left';
+		ctx.fillText('  ' + 1000, WIDTH/2, 60 + 20*i);
+	}
+	if(window.lastScore){
+		ctx.fillStyle = '#ddd';
+		ctx.textAlign = 'right';
+		ctx.fillText('last score' + '  ', WIDTH/2, 60 + 20*i);
+		ctx.textAlign = 'left';
+		ctx.fillText('  ' + window.lastScore, WIDTH/2, 60 + 20*i);
+	}
+
+	ctx.fillStyle = '#855';
+	ctx.textAlign = 'center';
+	ctx.fillText('press enter to play again', WIDTH/2, 60 + 20*i + 35);
+
+	controller.enterFunction = startGame;
+}

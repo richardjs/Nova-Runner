@@ -11,6 +11,10 @@ function setTimer(func, interval){
 		paused = true;
 	}
 	window.unpause = function(){
+		if(window.frozen){
+			return;
+		}
+
 		lastTime = Date.now()
 		drift = 0;
 		timer = setTimeout(timeHit, Math.max(interval - drift, 0));
@@ -18,6 +22,10 @@ function setTimer(func, interval){
 	}
 
 	function timeHit(){
+		if(window.frozen){
+			return;
+		}
+
 		var now = Date.now()
 		var delta = now - lastTime;
 		lastTime = now;

@@ -51,8 +51,9 @@ World.prototype.update = function(){
 		if(lives >= 0){
 			this.rewind();
 		}else{
-			alert('Game over! Score: ' + (score + world.score));
-			window.location.reload();
+			window.frozen = true;
+			window.lastScore = score + world.score;
+			highScores();
 		}
 	}else if(this.frame === WORLD_FRAMES){
 		if(!this.finalPlay){
