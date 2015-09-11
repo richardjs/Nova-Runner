@@ -78,6 +78,43 @@ function startGame(){
 };
 
 function highScores(){
+	if(!localStorage.getItem('scores')){
+		localStorage.setItem('scores', JSON.stringify([
+		]));
+	}
+
+	var scores = JSON.parse(localStorage.getItem('scores'));
+
+	if(window.lastScore){
+		var highScore = false;
+		if(scores.length < 10){
+			highScore = true;
+		}else{
+			for(var i = 0; i < scores.length; i++){
+				if(lastScore > scores[i].score){
+					highScore = true;
+					break;
+				}
+			}
+		}
+		if(highScore){
+			var name = prompt('High score! What is your name?');
+			var added = false;
+			for(var i = 0; i < scores.length; i++){
+				if(lastScore > scores[i].score){
+					scores.splice(i, 0, {name: name, score: lastScore});
+					added = true;
+					break;
+				}
+			}
+			if(!added){
+				scores.push({name: name, score: lastScore});
+			}
+			scores = scores.slice(0, 10);
+			localStorage.setItem('scores', JSON.stringify(scores));
+		}
+	}
+
 	ctx.fillStyle = '#000';
 	ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
@@ -88,11 +125,11 @@ function highScores(){
 
 	ctx.fillStyle = '#aa4';
 	ctx.font = '15px courier';
-	for(var i = 0; i < 10; i++){
+	for(var i = 0; i < scores.length; i++){
 		ctx.textAlign = 'right';
-		ctx.fillText('richard' + '  ', WIDTH/2, 60 + 20*i);
+		ctx.fillText(scores[i].name + '  ', WIDTH/2, 60 + 20*i);
 		ctx.textAlign = 'left';
-		ctx.fillText('  ' + 1000, WIDTH/2, 60 + 20*i);
+		ctx.fillText('  ' + scores[i].score, WIDTH/2, 60 + 20*i);
 	}
 	if(window.lastScore){
 		ctx.fillStyle = '#ddd';
