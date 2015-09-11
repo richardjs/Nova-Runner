@@ -30,6 +30,13 @@ function Controller(){
 				this.buttons.shooting = (true && this.shootingUp);
 				this.shootingUp = false;
 				break;
+			case 13:
+				if(this.enterFunction){
+					var func = this.enterFunction;
+					this.enterFunction = null;
+					func();
+				}
+				break;
 		}
 	}.bind(this));
 

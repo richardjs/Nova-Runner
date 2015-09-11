@@ -41,4 +41,6 @@ function setTimer(func, interval){
 			firstFocus = false;
 		}
 	});
+
+	return timer;
 }
