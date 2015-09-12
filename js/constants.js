@@ -13,6 +13,7 @@ var NEW_LIFE_POINTS = 500;
 
 var SHIP_ROTATE_SPEED = Math.PI*2 / FPS;
 var SHIP_ACCELERATION = 3 / FPS;
+var SHIP_AUTO_INTERVAL = Math.floor(FPS / 4);
 
 var IMG_SHIP = document.getElementById('IMG_SHIP');
 var SHIP_PAST_ALPHA = .5;

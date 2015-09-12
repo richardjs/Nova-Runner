@@ -11,6 +11,7 @@ function Ship(){
 	});
 	
 	this.inputs = [];
+	this.autoTimer = 0;
 }
 
 Ship.prototype = Object.create(Entity.prototype);
@@ -40,6 +41,12 @@ Ship.prototype.update = function(){
 	if(input.shooting){
 		world.entities.push(new Shot(this));
 		input.shooting = false;
+	}else if(input.spaceDown && this.autoTimer <= 0){
+		world.entities.push(new Shot(this));
+		this.autoTimer += SHIP_AUTO_INTERVAL;
+	}
+	if(this.autoTimer > 0){
+		this.autoTimer--;
 	}
 
 	Entity.prototype.update.call(this);

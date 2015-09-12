@@ -29,6 +29,7 @@ function Controller(){
 			case 32:
 				this.buttons.shooting = (true && this.shootingUp);
 				this.shootingUp = false;
+				this.buttons.spaceDown = true;
 				break;
 			case 13:
 				if(this.enterFunction){
@@ -58,6 +59,7 @@ function Controller(){
 			case 32:
 				this.buttons.shooting = false;
 				this.shootingUp = true;
+				this.buttons.spaceDown = false;
 				break;
 		}
 	}.bind(this));
