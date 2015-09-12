@@ -78,12 +78,12 @@ function startGame(){
 };
 
 function highScores(){
-	if(!localStorage.getItem('scores')){
-		localStorage.setItem('scores', JSON.stringify([
+	if(!localStorage.getItem('nr-scores')){
+		localStorage.setItem('nr-scores', JSON.stringify([
 		]));
 	}
 
-	var scores = JSON.parse(localStorage.getItem('scores'));
+	var scores = JSON.parse(localStorage.getItem('nr-scores'));
 
 	if(window.lastScore){
 		var highScore = false;
@@ -111,7 +111,7 @@ function highScores(){
 				scores.push({name: name, score: lastScore});
 			}
 			scores = scores.slice(0, 10);
-			localStorage.setItem('scores', JSON.stringify(scores));
+			localStorage.setItem('nr-scores', JSON.stringify(scores));
 		}
 	}
 
