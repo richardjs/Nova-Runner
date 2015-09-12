@@ -75,12 +75,12 @@ World.prototype.render = function(){
 			ctx.fillStyle = '#a33';
 			ctx.font = '18pt courier';
 			ctx.textAlign = 'center';
-			ctx.fillText('Emergency system activated!', WIDTH/2, HEIGHT/2);
+			ctx.fillText('emergency system activated', WIDTH/2, HEIGHT/2);
 		}else if(this.isOver){
 			ctx.fillStyle = '#3a3';
 			ctx.font = '18pt courier';
 			ctx.textAlign = 'center';
-			ctx.fillText('Sector mined successfully!', WIDTH/2, HEIGHT/2);
+			ctx.fillText('sector mined successfully', WIDTH/2, HEIGHT/2);
 		}
 		return;
 	}
