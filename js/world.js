@@ -38,6 +38,17 @@ World.prototype.update = function(){
 	this.entities.update();
 	this.frame++;
 
+	if(this.gameOver){
+		if(this.gameOverTimer > 0){
+			this.gameOverTimer--;
+		}else{
+			window.frozen = true;
+			window.lastScore = score + world.score;
+			highScores();
+		}
+		return;
+	}
+
 	if(this.frame % 4 === 0 && !this.finalPlay){
 		var image = new Image();
 		image.src = canvas.toDataURL();
@@ -51,9 +62,20 @@ World.prototype.update = function(){
 		if(lives >= 0){
 			this.rewind();
 		}else{
-			window.frozen = true;
-			window.lastScore = score + world.score;
-			highScores();
+			this.gameOver = true;
+			this.gameOverTimer = FPS * GAME_OVER_TIME;
+			lives = 0;
+			var toRemove = [];
+			for(var i = 0; i < this.entities.length; i++){
+				var entity = this.entities[i];
+				if(entity instanceof Ship){
+					toRemove.push(entity);
+					stardust.add(entity.pos.x, entity.pos.y, FX_SHIP_EXPLODE);
+				}
+			}
+			for(var i = 0; i < toRemove.length; i++){
+				this.entities.remove(toRemove[i]);
+			}
 		}
 	}else if(this.frame === WORLD_FRAMES){
 		if(!this.finalPlay){
@@ -99,6 +121,13 @@ World.prototype.render = function(){
 	ctx.textAlign = 'left';
 	ctx.fillText('Sector: ' + (level - 1), 5, 10);
 	ctx.fillText('Timelines: ' + this.timelines, 5, 20);
+
+	if(this.gameOver){
+		ctx.fillStyle = '#3a3';
+		ctx.font = '18pt courier';
+		ctx.textAlign = 'center';
+		ctx.fillText('game over', WIDTH/2, HEIGHT/2);
+	}
 }
 
 World.prototype.rewind = function(){

@@ -32,6 +32,8 @@ var ROCK_SPAWN_MARGIN_X = WIDTH/2.5;
 var ROCK_SPAWN_MARGIN_Y = HEIGHT/2.5;
 var ROCK_POINTS = 10;
 
+var GAME_OVER_TIME = 5;
+
 var IMG_RED_PARTICLE;
 var IMG_YELLOW_PARTICLE;
 (function(){
@@ -93,6 +95,38 @@ var FX_ROCK_HIT = {
 	opacity: function(){
 		return function(t){
 			return (Math.max(750-t, 0))/750
+		}
+	}
+}
+
+var FX_SHIP_EXPLODE = {
+	width: 0,
+	height: 0,
+	image: function(){
+		return function(){
+			var r = Math.random();
+			if(r < .80){
+				return IMG_RED_PARTICLE;
+			}
+			return IMG_YELLOW_PARTICLE;
+		}
+	},
+	ttl: 0,
+	emitCount: 100,
+	particleTTL: 1500,
+	particleVelocity: function(){
+		var angle = Math.PI*2*Math.random();
+		var speed = 350*Math.random();
+		return function(t){
+			return {
+				x: Math.cos(angle) * speed,
+				y: Math.sin(angle) * speed
+			}
+		}
+	},
+	opacity: function(){
+		return function(t){
+			return (Math.max(1500-t, 0))/1500
 		}
 	}
 }
