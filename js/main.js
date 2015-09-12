@@ -145,7 +145,9 @@ function highScores(){
 	if(!localStorage.getItem('nr-scores')){
 		localStorage.setItem('nr-scores', JSON.stringify([
 			{name: 'Jacsn', score: 2980},
+			{name: 'Nick', score: 2210},
 			{name: 'Josh', score: 1650},
+			{name: 'Richard', score: 930},
 			{name: 'Brock', score: 650}
 		]));
 	}
