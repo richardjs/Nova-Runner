@@ -53,4 +53,25 @@ Ship.prototype.update = function(){
 			}
 		}
 	}
+
+	if(input.accelerate){
+		var fx = FX_SHIP_THRUST;
+		var player = this;
+		fx.particleVelocity = function(){
+			var angle = player.angle + Math.PI + (Math.PI/4*Math.random() - Math.PI/8);
+			var speed = 75*Math.random();
+			return function(t){
+				return {
+					x: player.velocity.x*60 + Math.cos(angle) * speed,
+					y: player.velocity.y*60 + Math.sin(angle) * speed
+				}
+			}
+		}
+
+		stardust.add(
+			player.pos.x + Math.cos(player.angle + Math.PI) * 10,
+			player.pos.y + Math.sin(player.angle + Math.PI) * 10,
+			fx
+		);
+	}
 }

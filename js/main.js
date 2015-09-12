@@ -2,6 +2,7 @@
 
 window.addEventListener('load', function(){
 	generateImages();
+	window.stardust = new Stardust();
 
 	window.canvas = document.createElement('canvas');
 	document.body.appendChild(canvas);
@@ -121,6 +122,7 @@ function startGame(){
 	if(typeof(world.timer) === 'undefined'){
 		window.timer = setTimer(function(){
 			world.update();
+			stardust.update(1000/FPS);
 			if(world.isOver && !world.rewinding && !world.finalPlay){
 				lives += Math.floor((score + world.score) / NEW_LIFE_POINTS) - Math.floor(score / NEW_LIFE_POINTS);
 				score += world.score;
@@ -135,6 +137,7 @@ function startGame(){
 	function frame(time){
 		if(!window.frozen){
 			world.render();
+			stardust.render(canvas, ctx);
 			requestAnimationFrame(frame);
 		}
 	}

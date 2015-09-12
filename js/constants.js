@@ -31,3 +31,67 @@ var ROCK_SPAWN_MARGIN_X = WIDTH/2.5;
 var ROCK_SPAWN_MARGIN_Y = HEIGHT/2.5;
 var ROCK_POINTS = 10;
 
+var IMG_RED_PARTICLE;
+var IMG_YELLOW_PARTICLE;
+(function(){
+	var canvas = document.createElement('canvas');
+	canvas.width = 1;
+	canvas.height = 1;
+	var ctx = canvas.getContext('2d');
+	ctx.fillStyle = '#a22'
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	IMG_RED_PARTICLE = new Image();
+	IMG_RED_PARTICLE.src = canvas.toDataURL();
+	ctx.fillStyle = '#aa4'
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	IMG_YELLOW_PARTICLE = new Image();
+	IMG_YELLOW_PARTICLE.src = canvas.toDataURL();
+})();
+
+var FX_SHIP_THRUST = {
+	width: 0,
+	height: 0,
+	image: function(){
+		return function(){
+			if(Math.random() < .8){
+				return IMG_RED_PARTICLE;
+			}
+			return IMG_YELLOW_PARTICLE;
+		}
+	},
+	emitCount: 1,
+	ttl: 0,
+	particleTTL: 500,
+}
+
+var FX_ROCK_HIT = {
+	width: 0,
+	height: 0,
+	image: function(){
+		return function(){
+			var r = Math.random();
+			if(r < .80){
+				return IMG_YELLOW_PARTICLE;
+			}
+			return IMG_RED_PARTICLE;
+		}
+	},
+	ttl: 0,
+	emitCount: 40,
+	particleTTL: 750,
+	particleVelocity: function(){
+		var angle = Math.PI*2*Math.random();
+		var speed = 275*Math.random();
+		return function(t){
+			return {
+				x: Math.cos(angle) * speed,
+				y: Math.sin(angle) * speed
+			}
+		}
+	},
+	opacity: function(){
+		return function(t){
+			return (Math.max(750-t, 0))/750
+		}
+	}
+}

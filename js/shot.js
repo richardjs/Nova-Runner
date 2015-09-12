@@ -26,6 +26,7 @@ Shot.prototype.update = function(){
 		if(entity instanceof Rock){
 			if(this.collides(entity)){
 				entity.hit();
+				stardust.add(this.pos.x, this.pos.y, FX_ROCK_HIT);
 				world.entities.remove(this);
 			}
 		}

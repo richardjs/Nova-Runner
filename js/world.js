@@ -127,6 +127,8 @@ World.prototype.rewind = function(){
 
 	this.rewinding = true;
 	this.videoCurrentFrame = this.video.pop();
+
+	stardust.emitters = [];
 }
 
 World.prototype.over = function(){
