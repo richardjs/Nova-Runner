@@ -74,7 +74,7 @@ function instructions(){
 		'spokeman emphasized that their spacecraft are all equipped with',
 		'state-of-the-art prior-explosion time-reveral engines (PETREs). The',
 		'spokeman did not address the concerns over the short usable lifetime',
-		'of PETREs, nor difficulty of preventing paradoxes."',
+		'of PETREs, nor the difficulty of preventing paradoxes."',
 		'                                - Milky Way Broadcasting news report'
 	];
 	for(var i = 0; i < text.length; i++){
@@ -143,6 +143,9 @@ function startGame(){
 function highScores(){
 	if(!localStorage.getItem('nr-scores')){
 		localStorage.setItem('nr-scores', JSON.stringify([
+			{name: 'Jacsn', score: 2980},
+			{name: 'Josh', score: 1650},
+			{name: 'Brock', score: 650}
 		]));
 	}
 
