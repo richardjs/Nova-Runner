@@ -119,6 +119,9 @@ function startGame(){
 	window.lives = INITIAL_LIVES;
 	window.world = new World(level++);
 
+	stardust.emitters = [];
+	controller.buttons = {};
+
 	if(typeof(world.timer) === 'undefined'){
 		window.timer = setTimer(function(){
 			world.update();
