@@ -62,7 +62,7 @@ function instructions(){
 		'"Even now it is clear that the most significant scientific discovery',
 		'of the century was the spontaneous generation of a previously-unknown',
 		'element in the moments immediately before the explosion of a nova."',
-		'                  - "Novide", Dictionary of Chemical History, 3rd ed.'
+		'                 - "Novide", Dictionary of Chemical History, 3rd ed.'
 	];
 
 	for(var i = 0; i < text.length; i++){
@@ -82,7 +82,7 @@ function instructions(){
 	}
 	text = [
 		'"It\'s quiet out in space, but them stars sure light up pretty."',
-		'                                  - pilot Johnny "Too Close" Willery'
+		'                                  - Pilot Johnny "Too Close" Willery'
 	];
 	for(var i = 0; i < text.length; i++){
 		ctx.fillText(text[i], 20, 170 + 11*i);
