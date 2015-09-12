@@ -85,7 +85,7 @@ function highScores(){
 
 	var scores = JSON.parse(localStorage.getItem('nr-scores'));
 
-	if(window.lastScore){
+	if(typeof(window.lastScore) !== 'undefined'){
 		var highScore = false;
 		if(scores.length < 10){
 			highScore = true;
@@ -131,7 +131,7 @@ function highScores(){
 		ctx.textAlign = 'left';
 		ctx.fillText('  ' + scores[i].score, WIDTH/2, 60 + 20*i);
 	}
-	if(window.lastScore){
+	if(typeof(window.lastScore) !== 'undefined'){
 		ctx.fillStyle = '#ddd';
 		ctx.textAlign = 'right';
 		ctx.fillText('last score' + '  ', WIDTH/2, 60 + 20*i);
