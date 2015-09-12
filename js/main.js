@@ -28,6 +28,9 @@ function mainMenu(){
 	ctx.font = '20px courier';
 	ctx.textAlign = 'center';
 	ctx.fillText('n o v a   r u n n e r', 2*WIDTH/3, HEIGHT/2 - 20);
+	ctx.fillStyle = '#f22';
+	ctx.fillText('n         r          ', 2*WIDTH/3, HEIGHT/2 - 20);
+	ctx.fillStyle = '#a22';
 	ctx.font = '15px courier';
 	ctx.fillText('press enter to start', 2*WIDTH/3, HEIGHT/2 + 25);
 
@@ -43,6 +46,66 @@ function mainMenu(){
 	ctx.beginPath();
 	ctx.arc(-2* HEIGHT/3, HEIGHT/2, HEIGHT, 0, Math.PI*2);
 	ctx.fill();
+
+	controller.enterFunction = instructions;
+}
+
+function instructions(){
+	ctx.fillStyle = '#000';
+	ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+	ctx.fillStyle = '#a22';
+	ctx.font = '10px courier';
+	ctx.textAlign = 'left';
+	var text;
+	text = [
+		'"Even now it is clear that the most significant scientific discovery',
+		'of the century was the spontaneous generation of a previously-unknown',
+		'element in the moments immediately before the explosion of a nova."',
+		'                  - "Novide", Dictionary of Chemical History, 3rd ed.'
+	];
+
+	for(var i = 0; i < text.length; i++){
+		ctx.fillText(text[i], 20, 25 + 11*i);
+	}
+	text = [
+		'"The Northern Cluster Minerals pilot strike enters its third week',
+		'today. The strikers demand stricter safety protocols, but an NCM',
+		'spokeman emphasized that their spacecraft are all equipped with',
+		'state-of-the-art prior-explosion time-reveral engines (PETREs). The',
+		'spokeman did not address the concerns over the short usable lifetime',
+		'of PETREs, nor difficulty of preventing paradoxes."',
+		'                                - Milky Way Broadcasting news report'
+	];
+	for(var i = 0; i < text.length; i++){
+		ctx.fillText(text[i], 20, 80 + 11*i);
+	}
+	text = [
+		'"It\'s quiet out in space, but them stars sure light up pretty."',
+		'                                  - pilot Johnny "Too Close" Willery'
+	];
+	for(var i = 0; i < text.length; i++){
+		ctx.fillText(text[i], 20, 170 + 11*i);
+	}
+
+	ctx.fillStyle = '#aa4';
+	ctx.textAlign = 'center';
+	ctx.fillText('i n s t r u c t i o n s', WIDTH/2, 203);
+
+	ctx.textAlign = 'left';
+	ctx.fillText('- Maneuver with arrow keys, shoot with space, and pause with \'p\'.', 20, 220);
+	ctx.fillText('- Destroy all the rocks in a sector to jump to the next one.', 20, 220+11);
+	ctx.fillText('- You have ten seconds until the nova explodes.', 20, 220+11*2);
+	ctx.fillText('- Time will rewind right before the nova explodes.', 20, 220+11*3);
+	ctx.fillText('- Previous timelines will continue to exist after a rewind.', 20, 220+11*4);
+	ctx.fillText('- If *any* timeline gets hit, your emergency system will activate.', 20, 220+11*5);
+	ctx.fillText('- Your emergency system has a limited number of uses (slang "lives").', 20, 220+11*6);
+	ctx.fillText('- If you are hit with no lives, you die. Hope you got a high score!', 20, 220+11*7);
+	ctx.fillText('- Each rock hit is worth 10 points.', 20, 220+11*8);
+	ctx.fillText('- Extra lives given every 500 points, awarded after clearing a sector.', 20, 220+11*9);
+	ctx.fillStyle = '#a22';
+	ctx.textAlign = 'center';
+	ctx.fillText('press enter to begin', WIDTH/2, 337);
 
 	controller.enterFunction = startGame;
 }
@@ -75,7 +138,7 @@ function startGame(){
 		}
 	}
 	requestAnimationFrame(frame);
-};
+}
 
 function highScores(){
 	if(!localStorage.getItem('nr-scores')){
