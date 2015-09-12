@@ -72,8 +72,8 @@ function instructions(){
 		'"The Northern Cluster Minerals pilot strike enters its third week',
 		'today. The strikers demand stricter safety protocols, but an NCM',
 		'spokeman emphasized that their spacecraft are all equipped with',
-		'state-of-the-art prior-explosion time-reveral engines (PETREs). The',
-		'spokeman did not address the concerns over the short usable lifetime',
+		'state-of-the-art prior-explosion time-reversal engines (PETREs). The',
+		'spokesman did not address the concerns over the short usable lifetime',
 		'of PETREs, nor the difficulty of preventing paradoxes."',
 		'                                - Milky Way Broadcasting news report'
 	];
@@ -124,6 +124,7 @@ function startGame(){
 			if(world.isOver && !world.rewinding && !world.finalPlay){
 				lives += Math.floor((score + world.score) / NEW_LIFE_POINTS) - Math.floor(score / NEW_LIFE_POINTS);
 				score += world.score;
+				
 				window.world = new World(level++);
 			}
 		}, 1000/FPS);
