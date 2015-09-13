@@ -154,7 +154,7 @@ function highScores(){
 			{name: 'Jacsn', score: 2980},
 			{name: 'Nick', score: 2210},
 			{name: 'Josh', score: 1650},
-			{name: 'Richard', score: 1279},
+			{name: 'Richard', score: 1280},
 			{name: 'Ed', score: 920},
 			{name: 'Brock', score: 650},
 			{name: 'Rick', score: 430},

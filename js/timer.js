@@ -17,6 +17,7 @@ function setTimer(func, interval){
 
 		lastTime = Date.now()
 		drift = 0;
+		clearInterval(timer);
 		timer = setTimeout(timeHit, Math.max(interval - drift, 0));
 		paused = false;
 	}
@@ -40,15 +41,17 @@ function setTimer(func, interval){
 
 	var firstFocus = true;
 	window.addEventListener('blur', function(){
-		pause();
-		window.manuallyPaused = false;
+		if(!paused){
+			pause();
+			window.manuallyPaused = false;
+		}
 	});
 	window.addEventListener('focus', function(){
-		if(!firstFocus && !window.manuallyPaused){
+		//if(!firstFocus && !window.manuallyPaused){
+		if(!window.manuallyPaused){
 			unpause();
-		}else{
-			firstFocus = false;
 		}
+		//firstFocus = false;
 	});
 
 	return timer;
