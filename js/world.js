@@ -20,6 +20,8 @@ function World(rocks){
 
 	this.score = 0;
 	this.timelines = 1;
+
+	stardust.emitters = [];
 }
 
 World.prototype.update = function(){

@@ -150,11 +150,16 @@ function startGame(){
 function highScores(){
 	if(!localStorage.getItem('nr-scores')){
 		localStorage.setItem('nr-scores', JSON.stringify([
+			{name: 'Johnny', score: 5960},
 			{name: 'Jacsn', score: 2980},
 			{name: 'Nick', score: 2210},
 			{name: 'Josh', score: 1650},
-			{name: 'Richard', score: 930},
-			{name: 'Brock', score: 650}
+			{name: 'Richard', score: 1279},
+			{name: 'Ed', score: 920},
+			{name: 'Brock', score: 650},
+			{name: 'Rick', score: 430},
+			{name: 'Garrett', score: 200},
+			{name: 'Fredrick', score: 150}
 		]));
 	}
 
