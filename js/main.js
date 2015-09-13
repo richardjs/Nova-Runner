@@ -72,7 +72,7 @@ function instructions(){
 	text = [
 		'"The Northern Cluster Minerals pilot strike enters its third week',
 		'today. The strikers demand stricter safety protocols, but an NCM',
-		'spokeman emphasized that their spacecraft are all equipped with',
+		'spokesman emphasized that all their spacecraft are equipped with',
 		'state-of-the-art prior-explosion time-reversal engines (PETREs). The',
 		'spokesman did not address the concerns over the short usable lifetime',
 		'of PETREs, nor the difficulty of preventing paradoxes."',
@@ -97,7 +97,7 @@ function instructions(){
 	ctx.fillText('- Maneuver with arrow keys, shoot with space, and pause with \'p\'.', 20, 220);
 	ctx.fillText('- Destroy all the rocks in a sector to jump to the next one.', 20, 220+11);
 	ctx.fillText('- You have ten seconds until the nova explodes.', 20, 220+11*2);
-	ctx.fillText('- Time will rewind right before the nova explodes.', 20, 220+11*3);
+	ctx.fillText('- Time will rewind immediately before the nova explodes.', 20, 220+11*3);
 	ctx.fillText('- Previous timelines will continue to exist after a rewind.', 20, 220+11*4);
 	ctx.fillText('- If *any* timeline gets hit, your emergency system will activate.', 20, 220+11*5);
 	ctx.fillText('- Your emergency system has a limited number of uses (slang "lives").', 20, 220+11*6);
