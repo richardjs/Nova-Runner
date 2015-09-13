@@ -22,6 +22,8 @@ function World(rocks){
 	this.timelines = 1;
 
 	stardust.emitters = [];
+
+	this.fadeOutInterval = LEVEL_FADE_TIME;
 }
 
 World.prototype.update = function(){
@@ -35,6 +37,14 @@ World.prototype.update = function(){
 			}
 		}
 		return;
+	}
+
+	if(this.fadeOut){
+		this.fadeOutInterval--;
+		if(this.fadeOutInterval < 0){
+			this.fadeOut = false;
+			return;
+		}
 	}
 
 	this.entities.update();
@@ -65,7 +75,7 @@ World.prototype.update = function(){
 			this.rewind();
 		}else{
 			this.gameOver = true;
-			this.gameOverTimer = FPS * GAME_OVER_TIME;
+			this.gameOverTimer = GAME_OVER_TIME;
 			lives = 0;
 			var toRemove = [];
 			for(var i = 0; i < this.entities.length; i++){
@@ -80,13 +90,14 @@ World.prototype.update = function(){
 			}
 		}
 	}else if(this.frame === WORLD_FRAMES){
-		if(!this.finalPlay){
+		if(!this.finalPlay && !this.fadeOut){
 			this.rewind();
 		}else{
 			this.finalPlay = false;
+			this.fadeOut = true;
 		}
 	}else if(this.isOver){
-		if(!this.finalPlay){
+		if(!this.finalPlay && !this.fadeOut){
 			world.rewind();
 		}
 	}
@@ -110,8 +121,14 @@ World.prototype.render = function(){
 	}
 	this.lostLife = false;
 
+	if(this.fadeOut){
+		this.frame--;
+	}
 	var bgColorScale = Math.pow(this.frame, 5) / Math.pow(WORLD_FRAMES, 5);
 	ctx.fillStyle = 'rgb('+Math.floor(150*bgColorScale)+','+Math.floor(150*bgColorScale)+','+Math.floor(120*bgColorScale)+')';
+	if(this.fadeOut){
+		this.frame++;
+	}
 	ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	this.entities.render();
 
@@ -129,6 +146,13 @@ World.prototype.render = function(){
 		ctx.font = '18pt courier';
 		ctx.textAlign = 'center';
 		ctx.fillText('game over', WIDTH/2, HEIGHT/2);
+	}
+
+	if(this.fadeOut){
+		var fadeAlpha = (LEVEL_FADE_TIME - this.fadeOutInterval)/(LEVEL_FADE_TIME);
+		ctx.fillStyle = '#000';
+		ctx.globalAlpha = fadeAlpha;
+		ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	}
 }
 

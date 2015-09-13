@@ -126,7 +126,7 @@ function startGame(){
 		window.timer = setTimer(function(){
 			world.update();
 			stardust.update(1000/FPS);
-			if(world.isOver && !world.rewinding && !world.finalPlay){
+			if(world.isOver && !world.rewinding && !world.finalPlay && !world.fadeOut){
 				lives += Math.floor((score + world.score) / NEW_LIFE_POINTS) - Math.floor(score / NEW_LIFE_POINTS);
 				score += world.score;
 				
