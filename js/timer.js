@@ -41,9 +41,10 @@ function setTimer(func, interval){
 	var firstFocus = true;
 	window.addEventListener('blur', function(){
 		pause();
+		window.manuallyPaused = false;
 	});
 	window.addEventListener('focus', function(){
-		if(!firstFocus){
+		if(!firstFocus && !window.manuallyPaused){
 			unpause();
 		}else{
 			firstFocus = false;

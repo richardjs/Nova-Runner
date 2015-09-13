@@ -24,6 +24,7 @@ function Controller(){
 					window.unpause();
 				}else{
 					window.pause();
+					window.manuallyPaused = true;
 				}
 				break;
 			case 32:

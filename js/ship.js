@@ -41,6 +41,7 @@ Ship.prototype.update = function(){
 	if(input.shooting){
 		world.entities.push(new Shot(this));
 		input.shooting = false;
+		this.autoTimer = SHIP_AUTO_INTERVAL;
 	}else if(input.spaceDown && this.autoTimer <= 0){
 		world.entities.push(new Shot(this));
 		this.autoTimer += SHIP_AUTO_INTERVAL;
